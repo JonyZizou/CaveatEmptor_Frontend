@@ -22,7 +22,7 @@ class App extends Component {
   }
 
   queryContract() {
-    axios.get(`${PROD_URL}/analyze?token=${this.state.contractAddress}`)
+    axios.get(`https://api.caveatemptor.info/analyze?token=${this.state.contractAddress}`)
       .then(x => {
         console.log(x.data.report);
         this.setState({contracts: x.data.report.contracts})
