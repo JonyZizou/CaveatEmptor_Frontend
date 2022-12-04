@@ -1,6 +1,6 @@
 import './App.css';
 import React, {Component} from 'react';
-import { Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 
 import ModifierInfo from './ModifierInfo';
 
@@ -34,9 +34,15 @@ class ContractInfo extends Component {
 
 const ContractInfo = props => <>
   <Typography variant="h4">Contract: {props.contract.name}</Typography>
-  {
-    props.contract.modifiers.map((x, i) => <ModifierInfo key={props.contract.name + i} modifier={x}/>)
-  } 
+  <Grid container spacing={2}>
+    {
+      props.contract.modifiers.map((x, i) => <>
+        <Grid item xs={4}>
+          <ModifierInfo key={props.contract.name + i} modifier={x}/>
+        </Grid>
+      </>)
+    } 
+  </Grid>
 </>;
 
 export default ContractInfo;
