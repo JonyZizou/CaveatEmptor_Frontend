@@ -1,43 +1,44 @@
 import './App.css';
 import React, {Component} from 'react';
 import {styled} from '@mui/material/styles';
-import {Button, TextField} from '@mui/material';
+import {Button, TextField, Card, CardContent, Typography, List, ListItem, ListItemButton, ListItemText} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
+import ContractInfo from './ContractInfo';
+
 import axios from 'axios';
+
+const TEST_URL = `http://${window.location.hostname}:8000`;
+const PROD_URL = `https://ad8kafgxpd.us-east-2.awsapprunner.com/`;
 
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      contractAddress: ""
+      contractAddress: "0x0eb638648207d00b9025684d13b1cb53806debe4",
+      contracts: null
     }
   }
 
   queryContract() {
-    axios.get(`http://${window.location.hostname}:8000/analyze?token=${this.state.contractAddress}`)
+    axios.get(`${TEST_URL}/analyze?token=${this.state.contractAddress}`)
       .then(x => {
-        this.processResponse(x.data.report);
+        console.log(x.data.report);
+        this.setState({contracts: x.data.report.contracts})
       })
       .catch(e => {
         console.error(e);
       });
   }
 
-  processResponse(response) {
-    console.log(response);
-    for (let i=0, l=response.contracts.length; i<l; i++) {
-      console.log("Contract:", response.contracts[i]);
-    }
-  }
-
   render() {
     return <>
       <div className="App">
-        <h1 color="primary">Caveat Emptor</h1>
+        <Typography variant="h2">Caveat Emptor</Typography>
         <br/>
         <SearchTextField
+          sx={{ minWidth: 450 }}
           id="contract-address"
           label="Contract Address"
           variant="outlined"
@@ -53,6 +54,16 @@ class App extends Component {
           onClick={() => this.queryContract()}>
           <SearchIcon fontSize="large"/>
         </Button>
+        <br/>
+        <br/>
+
+        {
+        this.state.contracts ? 
+          this.state.contracts.map((x, i) => {
+            return <ContractInfo key={i} contract={x}/>
+          }) :
+          <></>
+        }
       </div>
     </>
   }
