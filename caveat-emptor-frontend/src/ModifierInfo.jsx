@@ -17,7 +17,7 @@ class ModifierInfo extends Component {
 
   render() {
     return <>
-      <Card variant="outlined" color="secondary" sx={{ maxWidth: 450, margin: 2 }}>
+      <Card variant="outlined" color="secondary" sx={{ maxWidth: 450, margin: 1 }}>
         <CardContent>
           <Typography variant="h5" gutterBottom>{this.state.name}</Typography>
           {this.state.functions.map((x, i) => <>
