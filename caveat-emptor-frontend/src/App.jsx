@@ -8,6 +8,9 @@ import ContractInfo from './ContractInfo';
 
 import axios from 'axios';
 
+const PROD_URL = 'https://api.caveatemptor.info';
+const TEST_URL = `http://${window.location.hostname}:8000`;
+
 class App extends Component {
   constructor() {
     super();
@@ -19,7 +22,7 @@ class App extends Component {
   }
 
   queryContract() {
-    axios.get(`https://api.caveatemptor.info/analyze?token=${this.state.contractAddress}`)
+    axios.get(`${process.env.NODE_ENV === "production" ? PROD_URL : TEST_URL}/analyze?token=${this.state.contractAddress}`)
       .then(x => {
         console.log(x.data.report);
         this.setState({contracts: x.data.report.contracts})

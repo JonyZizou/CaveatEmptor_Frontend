@@ -24,7 +24,7 @@ class ModifierInfo extends Component {
             {i >= (this.state.page-1) * MAX_ITEMS && i < this.state.page * MAX_ITEMS
             ? <ListItem key={i} component="div" disablePadding>
                 <ListItemButton key={i}>
-                  <ListItemText key={i} primary={x}/>
+                  <ListItemText key={i} primary={x.name}/>
                 </ListItemButton>
               </ListItem>
             : <></>}

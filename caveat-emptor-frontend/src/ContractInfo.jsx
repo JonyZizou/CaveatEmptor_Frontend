@@ -33,7 +33,7 @@ class ContractInfo extends Component {
 */
 
 const ContractInfo = props => <>
-  <Typography variant="h4">Detected Contract: {props.contract.name}</Typography>
+  <Typography variant="h4">Contract: {props.contract.name}</Typography>
   {
     props.contract.modifiers.map((x, i) => <ModifierInfo key={props.contract.name + i} modifier={x}/>)
   } 
