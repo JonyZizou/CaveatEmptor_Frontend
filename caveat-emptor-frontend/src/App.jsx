@@ -9,7 +9,7 @@ import ContractInfo from './ContractInfo';
 import axios from 'axios';
 
 const TEST_URL = `http://${window.location.hostname}:8000`;
-const PROD_URL = `https://ad8kafgxpd.us-east-2.awsapprunner.com/`;
+const PROD_URL = `https://api.caveatemptor.info`;
 
 class App extends Component {
   constructor() {
@@ -22,7 +22,7 @@ class App extends Component {
   }
 
   queryContract() {
-    axios.get(`${TEST_URL}/analyze?token=${this.state.contractAddress}`)
+    axios.get(`${PROD_URL}/analyze?token=${this.state.contractAddress}`)
       .then(x => {
         console.log(x.data.report);
         this.setState({contracts: x.data.report.contracts})
