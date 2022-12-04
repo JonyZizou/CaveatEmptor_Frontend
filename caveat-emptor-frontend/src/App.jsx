@@ -8,9 +8,6 @@ import ContractInfo from './ContractInfo';
 
 import axios from 'axios';
 
-const TEST_URL = `http://${window.location.hostname}:8000`;
-const PROD_URL = `https://api.caveatemptor.info`;
-
 class App extends Component {
   constructor() {
     super();
