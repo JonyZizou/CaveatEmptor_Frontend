@@ -20,7 +20,8 @@ class App extends Component {
     this.state = {
       contractAddress: "",
       contracts: null,
-      infoOpen: false
+      infoOpen: false,
+      waiting: false
     }
   }
 
@@ -28,11 +29,12 @@ class App extends Component {
     axios.get(`${process.env.NODE_ENV === "production" ? PROD_URL : TEST_URL}/analyze?token=${this.state.contractAddress}`)
       .then(x => {
         console.log(x.data.report);
-        this.setState({contracts: x.data.report.contracts})
+        this.setState({contracts: x.data.report.contracts, waiting: false})
       })
       .catch(e => {
         console.error(e);
       });
+    this.setState({waiting: true});
   }
 
   toggleInfo() {
@@ -83,11 +85,12 @@ class App extends Component {
         <br/>
 
         {
-        this.state.contracts ? 
+        this.state.contracts && !this.state.waiting ? 
           this.state.contracts.map((x, i) => {
             return <ContractInfo key={i} contract={x}/>
-          }) :
-          <></>
+          }) : this.state.waiting ? 
+          <Typography variant="p">Loading...</Typography> :
+          <Typography variant="p">No modifiers found!</Typography>
         }
         <Typography variant="p">
           DISCLAIMER: No information from this website should be taken as
