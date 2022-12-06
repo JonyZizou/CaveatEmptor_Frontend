@@ -89,12 +89,13 @@ class App extends Component {
           this.state.contracts.map((x, i) => {
             return <ContractInfo key={i} contract={x}/>
           }) : this.state.waiting ? 
-          <Typography variant="p">Loading...</Typography> :
-          <Typography variant="p">No modifiers found!</Typography>
+          <><Typography variant="p">Loading...</Typography><br/><br/></> :
+          <><Typography variant="p">No modifiers found or no contract loaded!</Typography><br/><br/></>
         }
         <Typography variant="p">
           DISCLAIMER: No information from this website should be taken as
-          financial advice. Additionally, the algorithm for this project is open
+          financial advice.<br/>
+          The algorithm for this project is open
           source, and can be accessed at <Link color="secondary" href="https://github.com/jonathanebrahimian/THEAlgorithm">
             https://github.com/jonathanebrahimian/THEAlgorithm
           </Link>.
