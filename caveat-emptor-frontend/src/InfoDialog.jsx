@@ -32,16 +32,17 @@ const InfoDialog = props => <>
         owner can run this transferOwnership function.
       </Typography><br/><br/>
       <Typography variant="p">
-        When you look up a smart contract, each of its own contracts get listed
-        below the search bar. Each contract has its own modifiers, each of which
-        will show up in their own separate box underneath their respective
-        contract. Then, each function that uses that modifier is listed within
-        that box, using multiple pages if necessary. If you want to read the
-        code of that function, simply click the function's name and its code
-        will appear below. Not enough space to read the function? Click the
-        expand button in the top right corner of the modifier box and the
-        modifier will expand to take up the full width of the page. You can
-        shrink it back to its original size by clicking that button again.
+        When you look up a smart contract, each of its own contracts that have a
+        modifier get listed below the search bar. Each contract has its own
+        modifiers, each of which will show up in their own separate box
+        underneath their respective contract. Then, each function that uses that
+        modifier is listed within that box, using multiple pages if necessary.
+        If you want to read the code of that function, simply click the
+        function's name and its code will appear below. Not enough space to read
+        the function? Click the expand button in the top right corner of the
+        modifier box and the modifier will expand to take up the full width of
+        the page. You can shrink it back to its original size by clicking that
+        button again.
       </Typography><br/><br/>
       <Button
         color="primary"
