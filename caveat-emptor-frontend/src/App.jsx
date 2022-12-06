@@ -18,7 +18,7 @@ class App extends Component {
     super();
 
     this.state = {
-      contractAddress: "0x0eb638648207d00b9025684d13b1cb53806debe4",
+      contractAddress: "",
       contracts: null,
       infoOpen: true
     }

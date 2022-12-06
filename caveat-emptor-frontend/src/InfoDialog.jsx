@@ -16,7 +16,8 @@ const InfoDialog = props => <>
         Simply copy-pase the Ethereum address of a cryptocurrency into the
         search bar, and click the search button. This software will then grab
         the cryptocurrency's smart contract and parse out all of that contract's
-        contracts, looking for any modifiers and how they are used.
+        contracts, looking for any modifiers and how they are used. Try it out
+        with NIL Coin: 0x0eb638648207d00b9025684d13b1cb53806debe4.
       </Typography><br/><br/>
       <Typography variant="p">
         What's a modifier? A modifier is a certain condition that must be passed
