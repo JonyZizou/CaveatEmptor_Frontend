@@ -37,17 +37,4 @@ class ContractInfo extends Component {
   }
 }
 
-const _ContractInfo = props => <>
-  <Typography variant="h4">Contract: {props.contract.name}</Typography>
-  <Grid container spacing={1}>
-    {
-      props.contract.modifiers.map((x, i) => <>
-        <Grid item xs={4}>
-          <ModifierInfo key={props.contract.name + i} modifier={x}/>
-        </Grid>
-      </>)
-    } 
-  </Grid>
-</>;
-
 export default ContractInfo;
