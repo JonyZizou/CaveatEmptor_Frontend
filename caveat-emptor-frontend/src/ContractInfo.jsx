@@ -23,7 +23,9 @@ class ContractInfo extends Component {
 
   render() {
     return <>
-      <Typography variant="h4">Contract: {this.state.contract.name}</Typography>
+      <Typography variant="h4">Contract: {this.state.contract.name} {
+        this.state.contract.main ? <>(Main Contract)</> : <></>
+      }</Typography>
       <Grid container spacing={1}>
         {
           this.state.contract.modifiers.map((x, i) => <>

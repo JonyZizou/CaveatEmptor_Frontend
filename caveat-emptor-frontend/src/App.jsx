@@ -1,7 +1,7 @@
 import './App.css';
 import React, {Component} from 'react';
 import {styled} from '@mui/material/styles';
-import {Button, TextField, Typography} from '@mui/material';
+import {Button, Link, TextField, Typography} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import InfoIcon from '@mui/icons-material/Info';
 
@@ -89,6 +89,13 @@ class App extends Component {
           }) :
           <></>
         }
+        <Typography variant="p">
+          DISCLAIMER: No information from this website should be taken as
+          financial advice. Additionally, the algorithm for this project is open
+          source, and can be accessed at <Link color="secondary" href="https://github.com/jonathanebrahimian/THEAlgorithm">
+            https://github.com/jonathanebrahimian/THEAlgorithm
+          </Link>.
+        </Typography>
       </div>
     </>
   }
