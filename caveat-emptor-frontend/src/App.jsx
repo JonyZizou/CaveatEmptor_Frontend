@@ -3,10 +3,12 @@ import React, {Component} from 'react';
 import {styled} from '@mui/material/styles';
 import {Button, TextField, Typography} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import InfoIcon from '@mui/icons-material/Info';
 
 import ContractInfo from './ContractInfo';
 
 import axios from 'axios';
+import InfoDialog from './InfoDialog';
 
 const PROD_URL = 'https://api.caveatemptor.info';
 const TEST_URL = `http://${window.location.hostname}:8000`;
@@ -17,7 +19,8 @@ class App extends Component {
 
     this.state = {
       contractAddress: "0x0eb638648207d00b9025684d13b1cb53806debe4",
-      contracts: null
+      contracts: null,
+      infoOpen: true
     }
   }
 
@@ -32,10 +35,32 @@ class App extends Component {
       });
   }
 
+  toggleInfo() {
+    this.setState({infoOpen: !this.state.infoOpen})
+  }
+
   render() {
     return <>
       <div className="App">
         <Typography variant="h2">Caveat Emptor</Typography>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={e => this.toggleInfo()}
+          style={{
+            display: "block",
+            float: "right",
+            cursor: "pointer",
+            marginTop: -64,
+            marginRight: 16
+          }}>
+          <InfoIcon
+            fontSize="large"
+            style={{
+              marginTop: 8
+            }}/>
+        </Button>
+        <InfoDialog open={this.state.infoOpen} toggleInfo={() => this.toggleInfo()}/>
         <br/>
         <SearchTextField
           sx={{ minWidth: 450 }}
