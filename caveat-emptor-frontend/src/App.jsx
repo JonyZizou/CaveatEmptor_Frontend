@@ -1,7 +1,7 @@
 import './App.css';
 import React, {Component} from 'react';
 import {styled} from '@mui/material/styles';
-import {Button, TextField, Card, CardContent, Typography, List, ListItem, ListItemButton, ListItemText} from '@mui/material';
+import {Button, TextField, Typography} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
 import ContractInfo from './ContractInfo';

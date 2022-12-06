@@ -4,37 +4,42 @@ import { Grid, Typography } from '@mui/material';
 
 import ModifierInfo from './ModifierInfo';
 
-/*
 class ContractInfo extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      page: 0,
-      contractName: props.contract.name,
-      modifiers: props.contract.modifiers
+      contract: props.contract,
+      zoomedContract: -1
     }
   }
 
+  setZoomedContract = x => {
+    if (x !== this.state.zoomedContract)
+      this.setState({zoomedContract: x})
+    else
+      this.setState({zoomedContract: -1})  
+  }
+
   render() {
-    console.log(this.state);
     return <>
-      <Typography variant="h4">Contract: {this.state.contractName}</Typography>
-      {
-        this.state.modifiers.map((x, i) => {
-          return (i >= MAX_ITEMS * this.state.page && i < MAX_ITEMS * (this.state.page + 1))
-            ? <ModifierInfo key={i} modifier={x}/>
-            : <></>
-        })
-      }
+      <Typography variant="h4">Contract: {this.state.contract.name}</Typography>
+      <Grid container spacing={1}>
+        {
+          this.state.contract.modifiers.map((x, i) => <>
+            <Grid item xs={this.state.zoomedContract === i ? 12 : 4}>
+              <ModifierInfo key={i} contractId={`mod-${i}`} modifier={x} setZoomedContract={this.setZoomedContract}/>
+            </Grid>
+          </>)
+        }
+      </Grid>
     </>
   }
 }
-*/
 
-const ContractInfo = props => <>
+const _ContractInfo = props => <>
   <Typography variant="h4">Contract: {props.contract.name}</Typography>
-  <Grid container spacing={2}>
+  <Grid container spacing={1}>
     {
       props.contract.modifiers.map((x, i) => <>
         <Grid item xs={4}>

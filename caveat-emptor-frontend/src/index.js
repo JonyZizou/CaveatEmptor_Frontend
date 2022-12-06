@@ -29,6 +29,9 @@ const theme = createTheme({
     background: {
       paper: "#8ff3f1"
     }
+  },
+  centered: {
+    justifyContent: "center"
   }
 });
 

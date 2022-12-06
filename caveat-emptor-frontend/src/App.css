@@ -11,3 +11,7 @@ button.search-icon {
   padding: 10px;
   /* background: #5bc0be; */
 }
+
+* {
+  transition: 1s ease-in-out;
+}
