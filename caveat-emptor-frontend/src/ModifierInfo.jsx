@@ -12,19 +12,16 @@ class ModifierInfo extends Component {
     
     this.state = {
       page: 1,
-      name: props.modifier.name,
-      functions: props.modifier.functions,
-      contractId: props.contractId
     }
   }
 
   zoomHere() {
-    this.props.setZoomedContract(parseInt(this.state.contractId.slice(4)));
+    this.props.setZoomedContract(parseInt(this.props.contractId.slice(4)));
   }
 
   render() {
     let numStartingSpaces = [];
-    this.state.functions.forEach((x, i) => {
+    this.props.modifier.functions.forEach((x, i) => {
       let numSpaces = 0;
       while (x.source_code[0][numSpaces] === ' ') numSpaces += 1;
       numStartingSpaces.push(numSpaces);
@@ -32,11 +29,11 @@ class ModifierInfo extends Component {
     return <>
       <Card variant="outlined" color="secondary" sx={{ margin: 1 }}>
         <CardContent>
-          <Typography variant="p" sx={{fontSize: 28}} gutterBottom>{this.state.name}</Typography>
+          <Typography variant="p" sx={{fontSize: 28}} gutterBottom>{this.props.modifier.name}</Typography>
           <OpenInFullIcon
             style={{display: "block", float: "right", cursor: "pointer"}}
             onClick={e => this.zoomHere()}/>
-          {this.state.functions.map((x, i) => <>
+          {this.props.modifier.functions.map((x, i) => <>
             {i >= (this.state.page-1) * MAX_ITEMS && i < this.state.page * MAX_ITEMS
               ? <Accordion key={i+100}>
                 <AccordionSummary
@@ -59,10 +56,10 @@ class ModifierInfo extends Component {
           </>)}
         </CardContent>
         <CardActions>
-          {this.state.functions.length > MAX_ITEMS
+          {this.props.modifier.functions.length > MAX_ITEMS
             ? <Pagination
                   style={{margin: "auto"}}
-                  count={Math.ceil(this.state.functions.length / MAX_ITEMS)}
+                  count={Math.ceil(this.props.modifier.functions.length / MAX_ITEMS)}
                   color="primary"
                   page={this.state.page}
                   onChange={(e, v) => this.setState({page: v})}/>

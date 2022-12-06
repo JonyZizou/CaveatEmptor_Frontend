@@ -9,7 +9,6 @@ class ContractInfo extends Component {
     super(props);
 
     this.state = {
-      contract: props.contract,
       zoomedContract: -1
     }
   }
@@ -23,13 +22,13 @@ class ContractInfo extends Component {
 
   render() {
     return <>
-      <Typography variant="h4">Contract: {this.state.contract.name} {
-        this.state.contract.main ? <>(Main Contract)</> : <>(Seen in {(100 * this.state.contract.percent_seen).toFixed(0)}% of Saved Smart Contracts)</>
+      <Typography variant="h4">Contract: {this.props.contract.name} {
+        this.props.contract.main ? <>(Main Contract)</> : <>(Detected {(100 * this.props.contract.percent_seen).toFixed(0)}%)</>
       }</Typography>
       <Grid container spacing={1}>
         {
-          this.state.contract.modifiers.map((x, i) => <>
-            <Grid item xs={this.state.zoomedContract === i ? 12 : 4}>
+          this.props.contract.modifiers.map((x, i) => <>
+            <Grid item xs={this.props.zoomedContract === i ? 12 : 4}>
               <ModifierInfo key={i} contractId={`mod-${i}`} modifier={x} setZoomedContract={this.setZoomedContract}/>
             </Grid>
           </>)
