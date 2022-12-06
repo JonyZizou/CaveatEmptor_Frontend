@@ -24,7 +24,7 @@ class ContractInfo extends Component {
   render() {
     return <>
       <Typography variant="h4">Contract: {this.state.contract.name} {
-        this.state.contract.main ? <>(Main Contract)</> : <></>
+        this.state.contract.main ? <>(Main Contract)</> : <>(Seen in {(100 * this.state.contract.percent_seen).toFixed(0)}% of Saved Smart Contracts)</>
       }</Typography>
       <Grid container spacing={1}>
         {
