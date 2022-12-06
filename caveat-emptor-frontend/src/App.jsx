@@ -20,7 +20,7 @@ class App extends Component {
     this.state = {
       contractAddress: "",
       contracts: null,
-      infoOpen: true
+      infoOpen: false
     }
   }
 
