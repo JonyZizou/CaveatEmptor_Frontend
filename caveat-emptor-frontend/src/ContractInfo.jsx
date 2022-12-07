@@ -28,7 +28,7 @@ class ContractInfo extends Component {
       <Grid container spacing={1}>
         {
           this.props.contract.modifiers.map((x, i) => <>
-            <Grid item xs={this.props.zoomedContract === i ? 12 : 4}>
+            <Grid item xs={this.state.zoomedContract === i ? 12 : 4}>
               <ModifierInfo key={i} contractId={`mod-${i}`} modifier={x} setZoomedContract={this.setZoomedContract}/>
             </Grid>
           </>)
