@@ -21,20 +21,20 @@ class App extends Component {
       contractAddress: "",
       contracts: null,
       infoOpen: false,
-      waiting: false
+      waiting: false,
+      errored: false
     }
   }
 
   queryContract() {
     axios.get(`${process.env.NODE_ENV === "production" ? PROD_URL : TEST_URL}/analyze?token=${this.state.contractAddress}`)
       .then(x => {
-        console.log(x.data.report);
-        this.setState({contracts: x.data.report.contracts, waiting: false})
+        this.setState({contracts: x.data.report.contracts, waiting: false, errored: false})
       })
       .catch(e => {
-        console.error(e);
+        this.setState({contracts: null, errored: true})
       });
-    this.setState({waiting: true});
+    this.setState({contracts: null, waiting: true, errored: false});
   }
 
   toggleInfo() {
@@ -85,11 +85,12 @@ class App extends Component {
         <br/>
 
         {
-        this.state.contracts && !this.state.waiting ? 
+        this.state.contracts && !this.state.waiting && !this.state.errored ? 
           this.state.contracts.map((x, i) => {
             return <ContractInfo key={i} contract={x}/>
-          }) : this.state.waiting ? 
-          <><Typography variant="p">Loading...</Typography><br/><br/></> :
+          }) : this.state.waiting && !this.state.errored ? 
+          <><Typography variant="p">Loading...</Typography><br/><br/></> : this.state.errored ?
+          <><Typography variant="p">Error processing contract, please open an issue in our GitHub listed below!</Typography><br/><br/></> :
           <><Typography variant="p">No modifiers found or no contract loaded!</Typography><br/><br/></>
         }
         <Typography variant="p">
