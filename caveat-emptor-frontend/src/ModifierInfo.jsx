@@ -33,7 +33,7 @@ class ModifierInfo extends Component {
           <OpenInFullIcon
             style={{display: "block", float: "right", cursor: "pointer"}}
             onClick={e => this.zoomHere()}/>
-          {this.props.modifier.functions.map((x, i) => <>
+          {this.props.modifier.functions.length > 0 ? this.props.modifier.functions.map((x, i) => <>
             {i >= (this.state.page-1) * MAX_ITEMS && i < this.state.page * MAX_ITEMS
               ? <Accordion key={i+100}>
                 <AccordionSummary
@@ -53,7 +53,7 @@ class ModifierInfo extends Component {
                 </AccordionDetails>
               </Accordion>
             : <></>}
-          </>)}
+          </>) : <Typography variant="p">No associated functions found!</Typography>}
         </CardContent>
         <CardActions>
           {this.props.modifier.functions.length > MAX_ITEMS
