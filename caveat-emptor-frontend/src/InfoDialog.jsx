@@ -46,7 +46,7 @@ const InfoDialog = props => <>
       </Typography><br/><br/>
       <Button
         color="primary"
-        variant="outlined"
+        variant="contained"
         onClick={e => props.toggleInfo()}>Return</Button>
     </DialogContent>
   </Dialog>

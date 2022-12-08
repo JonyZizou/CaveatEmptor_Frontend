@@ -12,6 +12,7 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -27,11 +28,14 @@ const theme = createTheme({
       contrastText: "#ffffff"
     },
     background: {
-      paper: "#8ff3f1"
+      paper: "#5bc0be"
     }
   },
   centered: {
     justifyContent: "center"
+  },
+  dark: {
+    background: "#003834"
   }
 });
 

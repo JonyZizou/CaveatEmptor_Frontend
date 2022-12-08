@@ -32,7 +32,7 @@ class ModifierInfo extends Component {
     return <>
       <Card variant="outlined" color="secondary" sx={{ margin: 1 }}>
         <CardContent>
-          <Accordion>
+          <Accordion style={{background: "#1e8f8e"}}>
             <AccordionSummary expandIcon={<ExpandMoreIcon/>}>
               <Typography variant="p" sx={{fontSize: 28}}>{this.props.modifier.name}</Typography>
             </AccordionSummary>

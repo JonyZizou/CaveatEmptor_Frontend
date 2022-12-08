@@ -22,19 +22,24 @@ class App extends Component {
       contracts: null,
       infoOpen: false,
       waiting: false,
-      errored: false
+      errored: false,
+      hasData: false
     }
   }
 
   queryContract() {
     axios.get(`${process.env.NODE_ENV === "production" ? PROD_URL : TEST_URL}/analyze?token=${this.state.contractAddress}`)
       .then(x => {
-        this.setState({contracts: x.data.report.contracts, waiting: false, errored: false})
+        let hasData = false;
+        for (let i=0; i<x.data.report.contracts.length && !hasData; i++) {
+          hasData = x.data.report.contracts[i].modifiers.length > 0;
+        }
+        this.setState({contracts: x.data.report.contracts, waiting: false, errored: false, hasData});
       })
       .catch(e => {
-        this.setState({contracts: null, errored: true})
+        this.setState({contracts: null, errored: true, hasData: false})
       });
-    this.setState({contracts: null, waiting: true, errored: false});
+    this.setState({contracts: null, waiting: true, errored: false, hasData: false});
   }
 
   toggleInfo() {
@@ -85,13 +90,14 @@ class App extends Component {
         <br/>
 
         {
-        this.state.contracts && !this.state.waiting && !this.state.errored ? 
+        this.state.contracts && this.state.hasData && !this.state.waiting && !this.state.errored ? 
           this.state.contracts.map((x, i) => {
             return <ContractInfo key={i} contract={x}/>
           }) : this.state.waiting && !this.state.errored ? 
           <><Typography variant="p">Loading...</Typography><br/><br/></> : this.state.errored ?
-          <><Typography variant="p">Error processing contract, please open an issue in our GitHub listed below!</Typography><br/><br/></> :
-          <><Typography variant="p">No modifiers found or no contract loaded!</Typography><br/><br/></>
+          <><Typography variant="p">Error processing contract, please open an issue in our GitHub listed below!</Typography><br/><br/></> : !this.state.hasData && this.state.contracts ?
+          <><Typography variant="p">Contract contains no modifiers!</Typography><br/><br/></> :
+          <><Typography variant="p">No contract loaded!</Typography><br/><br/></>
         }
         <Typography variant="p">
           DISCLAIMER: No information from this website should be taken as
@@ -108,17 +114,17 @@ class App extends Component {
 
 const SearchTextField = styled(TextField)({
   '& label': {
-    color: "#8ff3f1"
+    color: "#5bc0be"
   },
   '& .MuiOutlinedInput-root': {
     '& fieldset': {
-      borderColor: "#1e8f8e"
-    },
-    '&:hover fieldset': {
       borderColor: "#8ff3f1"
     },
-    '&.Mui-focused fieldset': {
+    '&:hover fieldset': {
       borderColor: "#5bc0be"
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: "#1e8f8e"
     },
   },
   '& input': {
