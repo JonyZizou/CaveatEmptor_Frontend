@@ -63,7 +63,7 @@ class App extends Component {
   }
 
   render() {
-    let viewCode = <Link href={`https://www.etherscan.io/token/${this.state.lastAddress}#code`} target='_blank' color="secondary">View Smart Contract Code</Link>
+    let viewCode = <Link href={`https://www.etherscan.io/token/${this.state.lastAddress}#code`} target='_blank' color="secondary">View Code</Link>
     return <>
       <div className="App">
         <Typography variant="h2">Caveat Emptor</Typography>
@@ -108,7 +108,7 @@ class App extends Component {
 
         {
         this.state.contracts && this.state.hasData && !this.state.waiting && !this.state.errored ? <>
-            <Typography variant="h3">{this.state.contractName}</Typography>
+            <Typography variant="h3">{this.state.contractName} ({viewCode})</Typography>
             {viewCode}
             {this.state.contracts.map((x, i) => {
               return <ContractInfo key={i} contract={x}/>
