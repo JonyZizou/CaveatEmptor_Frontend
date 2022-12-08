@@ -21,7 +21,7 @@ class ContractInfo extends Component {
   }
 
   render() {
-    return <>
+    return this.props.contract.modifiers.length > 0 ? <>
       <Typography variant="h4">Contract: {this.props.contract.name} {
         this.props.contract.main ? <>(Main Contract)</> : <>(Detected in {(100 * this.props.contract.percent_seen).toFixed(0)}% of Queries)</>
       }</Typography>
@@ -34,7 +34,7 @@ class ContractInfo extends Component {
           </>)
         }
       </Grid>
-    </>
+    </> : <></>
   }
 }
 
