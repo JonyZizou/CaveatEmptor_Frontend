@@ -19,6 +19,8 @@ class App extends Component {
 
     this.state = {
       contractAddress: "",
+      contractName: "",
+      lastAddress: "",
       contracts: null,
       infoOpen: false,
       waiting: false,
@@ -34,12 +36,26 @@ class App extends Component {
         for (let i=0; i<x.data.report.contracts.length && !hasData; i++) {
           hasData = x.data.report.contracts[i].modifiers.length > 0;
         }
-        this.setState({contracts: x.data.report.contracts, waiting: false, errored: false, hasData});
+        this.setState({
+          contractName: x.data.report.name,
+          lastAddress: x.data.report.address,
+          contracts: x.data.report.contracts,
+          waiting: false,
+          errored: false,
+          hasData
+        });
       })
       .catch(e => {
         this.setState({contracts: null, errored: true, hasData: false})
       });
-    this.setState({contracts: null, waiting: true, errored: false, hasData: false});
+    this.setState({
+      contracts: null,
+      contractName: "",
+      lastAddress: "",
+      waiting: true,
+      errored: false,
+      hasData: false
+    });
   }
 
   toggleInfo() {
@@ -47,6 +63,7 @@ class App extends Component {
   }
 
   render() {
+    let viewCode = <Link href={`https://www.etherscan.io/token/${this.state.lastAddress}#code`} target='_blank'>View Contract Code</Link>
     return <>
       <div className="App">
         <Typography variant="h2">Caveat Emptor</Typography>
@@ -90,24 +107,28 @@ class App extends Component {
         <br/>
 
         {
-        this.state.contracts && this.state.hasData && !this.state.waiting && !this.state.errored ? 
-          this.state.contracts.map((x, i) => {
-            return <ContractInfo key={i} contract={x}/>
-          }) : this.state.waiting && !this.state.errored ? 
+        this.state.contracts && this.state.hasData && !this.state.waiting && !this.state.errored ? <>
+            <Typography variant="h3">{this.state.contractName}</Typography>
+            {viewCode}
+            {this.state.contracts.map((x, i) => {
+              return <ContractInfo key={i} contract={x}/>
+            })}
+          </> : this.state.waiting && !this.state.errored ? 
           <><Typography variant="p">Loading...</Typography><br/><br/></> : this.state.errored ?
           <><Typography variant="p">
             Error processing contract, please ensure that the smart contract
             address you pasted is valid, and if so, feel free to open an issue
-            on our GitHub listed below!
+            on our GitHub listed below!<br/>
+            {viewCode}
           </Typography><br/><br/></> : !this.state.hasData && this.state.contracts ?
-          <><Typography variant="p">Contract contains no modifiers!</Typography><br/><br/></> :
+          <><Typography variant="p">Contract contains no modifiers!<br/>{viewCode}</Typography><br/><br/></> :
           <><Typography variant="p">No contract loaded!</Typography><br/><br/></>
         }
         <Typography variant="p">
           DISCLAIMER: No information from this website should be taken as
           financial advice.<br/>
           The algorithm for this project is open
-          source, and can be accessed at <Link color="secondary" href="https://github.com/jonathanebrahimian/THEAlgorithm">
+          source, and can be accessed <Link color="secondary" href="https://github.com/jonathanebrahimian/THEAlgorithm">
             https://github.com/jonathanebrahimian/THEAlgorithm
           </Link>.
         </Typography>

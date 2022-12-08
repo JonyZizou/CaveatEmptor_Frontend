@@ -69,7 +69,7 @@ class ModifierInfo extends Component {
                 </AccordionDetails>
               </Accordion>
             : <></>}
-          </>) : <Typography variant="p">No associated functions found!</Typography>}
+          </>) : <><br/><Typography variant="p">No associated functions found!</Typography></>}
         </CardContent>
         <CardActions>
           <MultipleStopIcon
