@@ -95,7 +95,11 @@ class App extends Component {
             return <ContractInfo key={i} contract={x}/>
           }) : this.state.waiting && !this.state.errored ? 
           <><Typography variant="p">Loading...</Typography><br/><br/></> : this.state.errored ?
-          <><Typography variant="p">Error processing contract, please open an issue in our GitHub listed below!</Typography><br/><br/></> : !this.state.hasData && this.state.contracts ?
+          <><Typography variant="p">
+            Error processing contract, please ensure that the smart contract
+            address you pasted is valid, and if so, feel free to open an issue
+            on our GitHub listed below!
+          </Typography><br/><br/></> : !this.state.hasData && this.state.contracts ?
           <><Typography variant="p">Contract contains no modifiers!</Typography><br/><br/></> :
           <><Typography variant="p">No contract loaded!</Typography><br/><br/></>
         }
