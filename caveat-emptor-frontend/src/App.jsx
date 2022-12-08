@@ -128,8 +128,8 @@ class App extends Component {
           DISCLAIMER: No information from this website should be taken as
           financial advice.<br/>
           The algorithm for this project is open
-          source, and can be accessed <Link color="secondary" href="https://github.com/jonathanebrahimian/THEAlgorithm">
-            https://github.com/jonathanebrahimian/THEAlgorithm
+          source, and can be accessed <Link target="_blank" color="secondary" href="https://github.com/jonathanebrahimian/THEAlgorithm">
+            here
           </Link>.
         </Typography>
       </div>
