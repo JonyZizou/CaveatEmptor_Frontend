@@ -119,7 +119,6 @@ class App extends Component {
             Error processing contract, please ensure that the smart contract
             address you pasted is valid, and if so, feel free to open an issue
             on our GitHub listed below!<br/>
-            {viewCode}
           </Typography><br/><br/></> : !this.state.hasData && this.state.contracts ?
           <>
             <Typography variant="h3">{this.state.contractName} ({viewCode})</Typography>
