@@ -121,7 +121,10 @@ class App extends Component {
             on our GitHub listed below!<br/>
             {viewCode}
           </Typography><br/><br/></> : !this.state.hasData && this.state.contracts ?
-          <><Typography variant="p">Contract contains no modifiers!<br/>{viewCode}</Typography><br/><br/></> :
+          <>
+            <Typography variant="h3">{this.state.contractName} ({viewCode})</Typography>
+            <Typography variant="p">This contract contains no modifiers!</Typography><br/><br/>
+            </> :
           <><Typography variant="p">No contract loaded!</Typography><br/><br/></>
         }
         <Typography variant="p">
