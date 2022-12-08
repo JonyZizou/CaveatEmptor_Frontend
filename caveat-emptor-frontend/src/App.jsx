@@ -63,7 +63,7 @@ class App extends Component {
   }
 
   render() {
-    let viewCode = <Link href={`https://www.etherscan.io/token/${this.state.lastAddress}#code`} target='_blank'>View Contract Code</Link>
+    let viewCode = <Link href={`https://www.etherscan.io/token/${this.state.lastAddress}#code`} target='_blank' color="secondary">View Contract Code</Link>
     return <>
       <div className="App">
         <Typography variant="h2">Caveat Emptor</Typography>
